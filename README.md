@@ -86,7 +86,9 @@ This is useful when the GUI is not available or not needed. To visualize the age
 > It should be noted that port **10 * i + 5760** can be used to connect to agent (drone) **i**. 
 
 ## Docker
-There is a public Docker image with UB-ANC Emulator installed which can be loaded and used. First you need to install [Docker](https://docs.docker.com/engine/installation), and setup its [privilege access](https://docs.docker.com/engine/installation/linux/linux-postinstall/). You can also build the Docker image locally:
+There is a public Docker image with UB-ANC Emulator installed that can be loaded and used. First, you need to install [Docker](https://docs.docker.com/engine/installation) (or [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/) if you are using an older Mac or Windows system that does not meet the requirements of Docker for Mac or Docker for Windows). If you are using Linux, you can then setup Docker's [privilege access](https://docs.docker.com/engine/installation/linux/linux-postinstall/)). 
+
+After installing Docker, the following commands should be typed into the Terminal (in windows, use Windows PowerShell, Command Prompt, or the Docker Terminal) to build the UB-ANC Emulator Docker image locally:
 
 ```
 docker build -t jmod/ub-anc-emulator:latest \
@@ -116,13 +118,13 @@ On other platforms though, you need to find a way to map the X server socket bet
 
 ```
 docker run -it \
-    --volume $PWD/docker:/tmp/emulator \
+    --volume $pwd/docker:/tmp/emulator \
     --publish 5770:5770 \
     --publish 5780:5780 \
     jmod/ub-anc-emulator:latest
 ```
 
-Then you can start emulator in console mode, and use [QGroundControl](http://qgroundcontrol.com/downloads) on the host to connect to agent's port to visualize it in the system.
+Then you can start the emulator in console mode, and use [QGroundControl](http://qgroundcontrol.com/downloads) on the host to connect to agent's port to visualize it in the system.
 
 Two things need to be noticed:
 * As you can see a new directory **docker** will be created on the host (in the current directory), and it will be mounted to **/tmp/emulator** directory on the container. This can be used to share files between the host and the container.
